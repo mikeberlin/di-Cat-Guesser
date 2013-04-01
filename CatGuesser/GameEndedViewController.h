@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MainViewController.h"
 
 @interface GameEndedViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgGameOver;
+@property (strong, nonatomic) MainViewController *Parent;
+@property BOOL WasDominated;
 
 @end
