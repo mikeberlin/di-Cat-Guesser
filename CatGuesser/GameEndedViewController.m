@@ -32,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    if (self.WasDominated)
+    if (self.wasDominated)
         [self gameWonInit];
     else
         [self gameLostInit];
@@ -51,7 +51,9 @@
 }
 
 - (void)oneFingerSwipeDown:(UITapGestureRecognizer *)recognizer {
-    self.Parent.ResetGame = YES;
+    self.parent.game.resetGame = YES;
+    [self.parent.game restartGame];
+    [self.parent syncUI];
 
     [self dismissViewControllerAnimated:YES completion:nil];
 }

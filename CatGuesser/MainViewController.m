@@ -8,25 +8,13 @@
 
 #import "MainViewController.h"
 #import "GameEndedViewController.h"
+#import "GuessingGame.h"
 
 @interface MainViewController ()
 
 @end
 
 @implementation MainViewController
-
-#define MAX_GUESSES 4
-#define MAX_LOSSES 4
-#define MAX_WINS 3
-
-static NSString *udNumWins = @"NumWins";
-static NSString *udNumLosses = @"NumLosses";
-NSArray *possibleCorrectAnswers;
-
-int numGuesses;
-int winningNumber;
-int numWins;
-int numLosses;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,13 +33,8 @@ int numLosses;
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (self.ResetGame)
-    {
-        [self resetGame];
-        self.ResetGame = NO;
-    }
-
-    [self initGame];
+    self.game = [[GuessingGame alloc] initGameWithMaxChoices:[self.catButtonCollection count]];
+    [self syncUI];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,19 +45,11 @@ int numLosses;
 
 - (IBAction)catSelected:(UIButton *)sender
 {
-    numGuesses++;
+    Choice *selectedAnswer = [self.game choiceAtIndex:[sender.titleLabel.text intValue] - 1];
+    selectedAnswer.isEnabled = NO;
+    [self.game choiceMade:selectedAnswer];
 
-    UIButton *btnSender = [self.catButtonCollection objectAtIndex:[self.catButtonCollection indexOfObject:sender]];
-    btnSender.hidden = YES;
-    int numberGuessed = [btnSender.titleLabel.text intValue];
-
-    if (numberGuessed == winningNumber)
-    {
-        numWins++;
-        [self setUserDefaultNumWins];
-        [self initGame];
-    }
-    else if (numGuesses >= MAX_GUESSES)
+    if ([self.game isGameLost])
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You lose"
                                                         message:@"Better luck next time. Keep trying, you'll get it!"
@@ -82,50 +57,33 @@ int numLosses;
                                               cancelButtonTitle:@"Try again..."
                                               otherButtonTitles:nil, nil];
 
-        numLosses++;
-        [self setUserDefaultNumLosses];
         [alert show];
-        [self initGame];
+        [self.game restartGame];
     }
+
+    [self syncUI];
 }
 
 - (IBAction)btnRestart:(id)sender
 {
-    [self initGame];
+    [self.game restartGame];
+    [self syncUI];
 }
 
-- (void)initGame
+- (void)syncUI
 {
-    numGuesses = 0;
-    numWins = [[NSUserDefaults standardUserDefaults] integerForKey:udNumWins];
-    numLosses = [[NSUserDefaults standardUserDefaults] integerForKey:udNumLosses];
-
-    possibleCorrectAnswers = @[@1, @2, @3, @4, @6, @7, @8, @9];
-    winningNumber = [[possibleCorrectAnswers objectAtIndex:arc4random_uniform([possibleCorrectAnswers count])] intValue];
-
     for (UIButton *btnCat in self.catButtonCollection) {
-        btnCat.hidden = NO;
+        Choice *choice = [self.game choiceAtIndex:[btnCat.titleLabel.text intValue] - 1];
+        btnCat.hidden = !choice.isEnabled;
     }
 
     for (int i=0; i < [self.winningCatsCollection count]; i++) {
         UIImageView *imgCat = (UIImageView *)[self.winningCatsCollection objectAtIndex:i];
-        imgCat.hidden = ((i + 1) > numWins);
+        imgCat.hidden = ((i + 1) > self.game.numWins);
     }
 
-    if (numWins >= MAX_WINS) [self showEndGameScreen:YES];
-    if (numLosses >= MAX_LOSSES) [self showEndGameScreen:NO];
-
-    NSLog(@"Winning Number: %d", winningNumber);
-}
-
-- (void)resetGame
-{
-    numWins = 0;
-    numLosses = 0;
-
-    [self setUserDefaultNumWins];
-    [self setUserDefaultNumLosses];
-    [self initGame];
+    if (self.game.isDominated) [self showEndGameScreen:YES];
+    if (self.game.wasDominated) [self showEndGameScreen:NO];
 }
 
 - (void)showEndGameScreen:(BOOL)wasDominated
@@ -133,18 +91,8 @@ int numLosses;
     GameEndedViewController *vcEndGame = [[GameEndedViewController alloc] init];
     vcEndGame.WasDominated = wasDominated;
     vcEndGame.Parent = self;
-
+    
     [self presentViewController:vcEndGame animated:YES completion:nil];
-}
-
-- (void)setUserDefaultNumWins
-{
-    [[NSUserDefaults standardUserDefaults] setInteger:numWins forKey:udNumWins];
-}
-
-- (void)setUserDefaultNumLosses
-{
-    [[NSUserDefaults standardUserDefaults] setInteger:numLosses forKey:udNumLosses];
 }
 
 @end

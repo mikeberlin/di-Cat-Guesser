@@ -12,7 +12,7 @@
 @interface GameEndedViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgGameOver;
-@property (strong, nonatomic) MainViewController *Parent;
-@property BOOL WasDominated;
+@property (strong, nonatomic) MainViewController *parent;
+@property BOOL wasDominated;
 
 @end

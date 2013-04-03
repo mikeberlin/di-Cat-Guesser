@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GuessingGame.h"
 
 @interface MainViewController : UIViewController
 
-@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *winningCatsCollection;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *catButtonCollection;
-@property BOOL ResetGame;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *winningCatsCollection;
+
+@property (nonatomic) GuessingGame *game;
 
 - (IBAction)catSelected:(id)sender;
 - (IBAction)btnRestart:(id)sender;
+- (void)syncUI;
 
 @end

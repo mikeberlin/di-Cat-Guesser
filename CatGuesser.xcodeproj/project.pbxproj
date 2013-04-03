@@ -38,6 +38,8 @@
 		57765EE81704FFE500B320E5 /* loser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57765EE61704FFE500B320E5 /* loser.mp3 */; };
 		57765EE91704FFE500B320E5 /* winner.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57765EE71704FFE500B320E5 /* winner.mp3 */; };
 		57765EED170503D500B320E5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57765EEC170503D500B320E5 /* AVFoundation.framework */; };
+		57FAC083170B9F07002BFEB4 /* GuessingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAC082170B9F07002BFEB4 /* GuessingGame.m */; };
+		57FAC086170B9F17002BFEB4 /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAC085170B9F17002BFEB4 /* Choice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +81,10 @@
 		57765EE71704FFE500B320E5 /* winner.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winner.mp3; sourceTree = "<group>"; };
 		57765EEC170503D500B320E5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		57765EEE170508B300B320E5 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		57FAC081170B9F07002BFEB4 /* GuessingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessingGame.h; sourceTree = "<group>"; };
+		57FAC082170B9F07002BFEB4 /* GuessingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessingGame.m; sourceTree = "<group>"; };
+		57FAC084170B9F17002BFEB4 /* Choice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Choice.h; sourceTree = "<group>"; };
+		57FAC085170B9F17002BFEB4 /* Choice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Choice.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,13 +134,12 @@
 		571AC9991703B16D0058D6CC /* CatGuesser */ = {
 			isa = PBXGroup;
 			children = (
+				57FAC080170B9EE9002BFEB4 /* Model */,
 				571AC9A21703B16D0058D6CC /* AppDelegate.h */,
 				571AC9A31703B16D0058D6CC /* AppDelegate.m */,
-				57765EE51704FFDA00B320E5 /* Audio */,
 				576109B71703CF3800CA14C8 /* GameEndedViewController.h */,
 				576109B81703CF3800CA14C8 /* GameEndedViewController.m */,
 				576109B91703CF3800CA14C8 /* GameEndedViewController.xib */,
-				5761095F1703B39200CA14C8 /* Images */,
 				576109B21703B48400CA14C8 /* MainViewController.h */,
 				576109B31703B48400CA14C8 /* MainViewController.m */,
 				576109B41703B48400CA14C8 /* MainViewController.xib */,
@@ -146,6 +151,8 @@
 		571AC99A1703B16D0058D6CC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				57765EE51704FFDA00B320E5 /* Audio */,
+				5761095F1703B39200CA14C8 /* Images */,
 				571AC99B1703B16D0058D6CC /* CatGuesser-Info.plist */,
 				571AC99C1703B16D0058D6CC /* InfoPlist.strings */,
 				571AC99F1703B16D0058D6CC /* main.m */,
@@ -186,6 +193,17 @@
 				57765EE71704FFE500B320E5 /* winner.mp3 */,
 			);
 			name = Audio;
+			sourceTree = "<group>";
+		};
+		57FAC080170B9EE9002BFEB4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				57FAC084170B9F17002BFEB4 /* Choice.h */,
+				57FAC085170B9F17002BFEB4 /* Choice.m */,
+				57FAC081170B9F07002BFEB4 /* GuessingGame.h */,
+				57FAC082170B9F07002BFEB4 /* GuessingGame.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +294,8 @@
 				571AC9A41703B16D0058D6CC /* AppDelegate.m in Sources */,
 				576109B51703B48400CA14C8 /* MainViewController.m in Sources */,
 				576109BA1703CF3800CA14C8 /* GameEndedViewController.m in Sources */,
+				57FAC083170B9F07002BFEB4 /* GuessingGame.m in Sources */,
+				57FAC086170B9F17002BFEB4 /* Choice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
