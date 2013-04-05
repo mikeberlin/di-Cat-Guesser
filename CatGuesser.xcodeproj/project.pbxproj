@@ -40,6 +40,8 @@
 		57765EED170503D500B320E5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57765EEC170503D500B320E5 /* AVFoundation.framework */; };
 		57FAC083170B9F07002BFEB4 /* GuessingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAC082170B9F07002BFEB4 /* GuessingGame.m */; };
 		57FAC086170B9F17002BFEB4 /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAC085170B9F17002BFEB4 /* Choice.m */; };
+		57FE3824170E592700E5C844 /* HighScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FE3822170E592600E5C844 /* HighScoresViewController.m */; };
+		57FE3825170E592700E5C844 /* HighScoresViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57FE3823170E592700E5C844 /* HighScoresViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,9 @@
 		57FAC082170B9F07002BFEB4 /* GuessingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessingGame.m; sourceTree = "<group>"; };
 		57FAC084170B9F17002BFEB4 /* Choice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Choice.h; sourceTree = "<group>"; };
 		57FAC085170B9F17002BFEB4 /* Choice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Choice.m; sourceTree = "<group>"; };
+		57FE3821170E592600E5C844 /* HighScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoresViewController.h; sourceTree = "<group>"; };
+		57FE3822170E592600E5C844 /* HighScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoresViewController.m; sourceTree = "<group>"; };
+		57FE3823170E592700E5C844 /* HighScoresViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HighScoresViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,15 +139,18 @@
 		571AC9991703B16D0058D6CC /* CatGuesser */ = {
 			isa = PBXGroup;
 			children = (
-				57FAC080170B9EE9002BFEB4 /* Model */,
 				571AC9A21703B16D0058D6CC /* AppDelegate.h */,
 				571AC9A31703B16D0058D6CC /* AppDelegate.m */,
 				576109B71703CF3800CA14C8 /* GameEndedViewController.h */,
 				576109B81703CF3800CA14C8 /* GameEndedViewController.m */,
 				576109B91703CF3800CA14C8 /* GameEndedViewController.xib */,
+				57FE3821170E592600E5C844 /* HighScoresViewController.h */,
+				57FE3822170E592600E5C844 /* HighScoresViewController.m */,
+				57FE3823170E592700E5C844 /* HighScoresViewController.xib */,
 				576109B21703B48400CA14C8 /* MainViewController.h */,
 				576109B31703B48400CA14C8 /* MainViewController.m */,
 				576109B41703B48400CA14C8 /* MainViewController.xib */,
+				57FAC080170B9EE9002BFEB4 /* Model */,
 				571AC99A1703B16D0058D6CC /* Supporting Files */,
 			);
 			path = CatGuesser;
@@ -280,6 +288,7 @@
 				576109BB1703CF3800CA14C8 /* GameEndedViewController.xib in Resources */,
 				57765EE81704FFE500B320E5 /* loser.mp3 in Resources */,
 				57765EE91704FFE500B320E5 /* winner.mp3 in Resources */,
+				57FE3825170E592700E5C844 /* HighScoresViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +305,7 @@
 				576109BA1703CF3800CA14C8 /* GameEndedViewController.m in Sources */,
 				57FAC083170B9F07002BFEB4 /* GuessingGame.m in Sources */,
 				57FAC086170B9F17002BFEB4 /* Choice.m in Sources */,
+				57FE3824170E592700E5C844 /* HighScoresViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

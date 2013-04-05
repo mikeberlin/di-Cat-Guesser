@@ -8,6 +8,12 @@
 
 #import "GuessingGame.h"
 
+@interface GuessingGame()
+
+@property (nonatomic, strong) NSDate *startTime;
+
+@end
+
 @implementation GuessingGame
 
 @synthesize numWins;
@@ -37,16 +43,10 @@
 }
 
 #pragma Constructors
-- (id)initGameWithMaxChoices:(NSInteger)maxChoices
+- (void)startGame
 {
-    self = [super init];
-
-    if (self) {
-        self.maxChoices = maxChoices;
-        [self restartGame];
-    }
-
-    return self;
+    self.maxChoices = (self.maxChoices) ? self.maxChoices : DEFAULT_MAX_CHOICES;
+    [self restartGame];
 }
 
 - (void)initChoicesWithAnswer:(NSInteger)answer
@@ -77,6 +77,7 @@
     self.possibleCorrectAnswers = @[@1, @2, @3, @4, @6, @7, @8, @9];
     self.winningNumber = [self getWinningAnswer];
     [self initChoicesWithAnswer:self.winningNumber];
+    self.startTime = [NSDate date];
 }
 
 - (void)choiceMade:(Choice *)choice
@@ -86,6 +87,8 @@
     if (choice.isAnswer)
     {
         self.numWins++;
+        self.duration = [[NSDate date] timeIntervalSinceDate:self.startTime];
+        [self storeScore];
         [self restartGame];
     }
 }
@@ -120,6 +123,14 @@
     NSLog(@"Winning Answer: %d", answer);
 
     return answer;
+}
+
+-(void)storeScore
+{
+    NSMutableArray *scores = [[[NSUserDefaults standardUserDefaults] arrayForKey:UD_HIGH_SCORES] mutableCopy];
+    if (!scores) scores = [[NSMutableArray alloc] init];
+    [scores addObject:[NSNumber numberWithDouble:self.duration]];
+    [[NSUserDefaults standardUserDefaults] setValue:scores forKey:UD_HIGH_SCORES];
 }
 
 - (void)reinitGame

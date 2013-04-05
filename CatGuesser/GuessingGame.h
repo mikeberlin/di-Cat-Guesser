@@ -14,11 +14,14 @@
 #define MAX_GUESSES 4
 #define MAX_LOSSES 4
 #define MAX_WINS 3
+#define DEFAULT_MAX_CHOICES 9
 #define UD_NUM_WINS_KEY @"NumWins"
 #define UD_NUM_LOSSES_KEY @"NumLosses"
+#define UD_HIGH_SCORES @"HighScores"
 
 @property (nonatomic) NSArray *possibleCorrectAnswers;
 @property (nonatomic, strong) NSMutableArray *choices; // of Choices
+@property (nonatomic) NSTimeInterval duration;
 
 @property (nonatomic) NSInteger winningNumber;
 @property (nonatomic) NSInteger maxChoices;
@@ -28,12 +31,12 @@
 
 @property (nonatomic) BOOL resetGame;
 
-- (id)initGameWithMaxChoices:(NSInteger)maxChoices;
 - (void)choiceMade:(Choice *)choice;
 - (Choice *)choiceAtIndex:(NSUInteger)index;
 - (void)restartGame;
 - (BOOL)wasDominated;
 - (BOOL)isDominated;
 - (BOOL)isGameLost;
+- (void)startGame;
 
 @end

@@ -17,7 +17,8 @@
 @property (nonatomic) GuessingGame *game;
 
 - (IBAction)catSelected:(id)sender;
-- (IBAction)btnRestart:(id)sender;
+- (IBAction)btnRestart:(UIButton *)sender;
+- (IBAction)btnShowScores:(UIButton *)sender;
 - (void)syncUI;
 
 @end

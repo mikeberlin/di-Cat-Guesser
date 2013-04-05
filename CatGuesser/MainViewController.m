@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "GameEndedViewController.h"
 #import "GuessingGame.h"
+#import "HighScoresViewController.h"
 
 @interface MainViewController ()
 
@@ -33,7 +34,18 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.game = [[GuessingGame alloc] initGameWithMaxChoices:[self.catButtonCollection count]];
+    //self.game = [[GuessingGame alloc] initGameWithMaxChoices:[self.catButtonCollection count]];
+
+    self.game = [[GuessingGame alloc] init];
+    self.game.maxChoices = [self.catButtonCollection count];
+    [self.game startGame];
+    
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
+    barButton.title = @"Back";
+
+    self.navigationItem.backBarButtonItem = barButton;
+    self.title = @"Cat Guessing Game";
+    
     [self syncUI];
 }
 
@@ -64,10 +76,16 @@
     [self syncUI];
 }
 
-- (IBAction)btnRestart:(id)sender
+- (IBAction)btnRestart:(UIButton *)sender
 {
     [self.game restartGame];
     [self syncUI];
+}
+
+- (IBAction)btnShowScores:(UIButton *)sender
+{
+    HighScoresViewController *vcHighScores = [[HighScoresViewController alloc] init];
+    [self.navigationController pushViewController:vcHighScores animated:YES];
 }
 
 - (void)syncUI
